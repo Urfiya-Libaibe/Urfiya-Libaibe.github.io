@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urfiya Libaibe — AI & ML Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080C10;
+    --bg2: #0D1117;
+    --bg3: #161B22;
+    --accent: #00D4FF;
+    --accent2: #FF3B6B;
+    --accent3: #7C3AED;
+    --green: #00FF87;
+    --text: #E6EDF3;
+    --muted: #7D8590;
+    --border: #21262D;
+    --card: #0D1117;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.15s ease;
+    opacity: 0.5;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8,12,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+  }
+
+  @keyframes gridMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(60px); }
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+    top: 50%; left: 60%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-glow2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(255,59,107,0.06) 0%, transparent 70%);
+    top: 30%; left: 20%;
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    border: 1px solid rgba(0,212,255,0.3);
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.8s 0.1s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-name .highlight {
+    background: linear-gradient(135deg, var(--accent), var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s 0.2s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-title span { color: var(--accent2); }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.8s 0.3s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.4s ease forwards;
+    opacity: 0;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+  }
+
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent), 0 0 30px rgba(0,212,255,0.2);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Scrolling ticker */
+  .ticker {
+    background: var(--bg3);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-flex;
+    animation: ticker 25s linear infinite;
+    gap: 4rem;
+  }
+
+  .ticker-item {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .ticker-item::before {
+    content: '★';
+    color: var(--accent);
+    font-size: 0.6rem;
+  }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Sections */
+  section {
+    padding: 6rem 4rem;
+    position: relative;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 1.2rem;
+    font-size: 1.05rem;
+  }
+
+  .about-text p span { color: var(--accent); font-weight: 500; }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+  }
+
+  .stat-card:hover { border-color: var(--accent); }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* Projects */
+  .projects { background: var(--bg2); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .project-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .project-card:hover {
+    border-color: rgba(0,212,255,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  .project-card:hover::before { transform: scaleX(1); }
+
+  .project-icon {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .project-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stack-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .project-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+  }
+
+  .project-link:hover { gap: 0.8rem; }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .skill-category {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.3s;
+  }
+
+  .skill-category:hover { border-color: var(--accent3); }
+
+  .skill-cat-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .skill-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .skill-list li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .skill-list li::before {
+    content: '▸';
+    color: var(--accent);
+    font-size: 0.7rem;
+  }
+
+  /* Education */
+  .edu { background: var(--bg2); }
+
+  .edu-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem 2.5rem;
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.3s;
+  }
+
+  .edu-card:hover { border-color: var(--accent); }
+
+  .edu-degree {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .edu-school {
+    color: var(--accent);
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .edu-detail { color: var(--muted); font-size: 0.85rem; }
+
+  .edu-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  /* Contact */
+  .contact-inner {
+    max-width: 700px;
+    margin: 3rem auto 0;
+    text-align: center;
+  }
+
+  .contact-inner p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.8rem;
+    border-radius: 4px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+  }
+
+  .contact-btn.github {
+    background: var(--bg3);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .contact-btn.github:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .contact-btn.linkedin {
+    background: #0A66C2;
+    color: white;
+  }
+
+  .contact-btn.linkedin:hover { background: #0855a5; }
+
+  .contact-btn.email {
+    background: var(--accent2);
+    color: white;
+  }
+
+  .contact-btn.email:hover { background: #e02255; }
+
+  /* Footer */
+  footer {
+    background: var(--bg3);
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  footer span { color: var(--accent); }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .hero-name { font-size: 3rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .edu-card { flex-direction: column; gap: 1rem; text-align: center; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">UL.dev</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Available for Internships 2025–26</div>
+    <h1 class="hero-name">
+      Urfiya<br><span class="highlight">Libaibe</span>
+    </h1>
+    <p class="hero-title">
+      AI/ML Developer &nbsp;/&nbsp; IoT Builder &nbsp;/&nbsp; <span>CSE '27 @ VVCE Mysore</span>
+    </p>
+    <p class="hero-desc">
+      Building intelligent real-world systems at the intersection of Machine Learning, IoT, and Healthcare AI. From soil sensors on Raspberry Pi to multi-agent antibiotic resistance prediction.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View Projects →</a>
+      <a href="https://github.com/Urfiya-Libaibe" target="_blank" class="btn-secondary">GitHub ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Machine Learning</span>
+    <span class="ticker-item">Raspberry Pi</span>
+    <span class="ticker-item">YOLOv5</span>
+    <span class="ticker-item">Firebase</span>
+    <span class="ticker-item">Healthcare AI</span>
+    <span class="ticker-item">IoT Systems</span>
+    <span class="ticker-item">Python</span>
+    <span class="ticker-item">Multi-Agent AI</span>
+    <span class="ticker-item">Computer Vision</span>
+    <span class="ticker-item">NodeMCU</span>
+    <span class="ticker-item">Google Colab</span>
+    <span class="ticker-item">Kaggle</span>
+    <span class="ticker-item">Machine Learning</span>
+    <span class="ticker-item">Raspberry Pi</span>
+    <span class="ticker-item">YOLOv5</span>
+    <span class="ticker-item">Firebase</span>
+    <span class="ticker-item">Healthcare AI</span>
+    <span class="ticker-item">IoT Systems</span>
+    <span class="ticker-item">Python</span>
+    <span class="ticker-item">Multi-Agent AI</span>
+    <span class="ticker-item">Computer Vision</span>
+    <span class="ticker-item">NodeMCU</span>
+    <span class="ticker-item">Google Colab</span>
+    <span class="ticker-item">Kaggle</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <h2 class="section-title">Who I Am</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        I'm <span>Urfiya Libaibe</span>, a 2nd year Computer Science student at <span>Vidya Vardhaka College of Engineering, Mysore</span> — passionate about building AI systems that solve real problems.
+      </p>
+      <p>
+        My journey started with a Raspberry Pi, soil images, and a Kaggle dataset — and grew into building a <span>multi-agent Healthcare AI app</span> at a hackathon. I don't just study AI, I build with it.
+      </p>
+      <p>
+        I'm currently learning <span>Deep Learning & Computer Vision</span>, and working on making my projects production-ready with full frontend and backend integration.
+      </p>
+    </div>
+    <div class="about-stats reveal">
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Real-World Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2nd</div>
+        <div class="stat-label">Year CSE Student</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Hackathon Built</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Problems to Solve</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="projects">
+  <div class="section-label">Projects</div>
+  <h2 class="section-title">What I've Built</h2>
+  <div class="projects-grid">
+
+    <a href="https://github.com/Urfiya-Libaibe/Smart-AgriAI-Soil-Fertilizer-Predictor" target="_blank" class="project-card reveal">
+      <div class="project-icon">🌱</div>
+      <div class="project-tag">Machine Learning · IoT · Internship</div>
+      <div class="project-name">Smart AgriAI</div>
+      <div class="project-desc">
+        AI-powered soil type classification and fertilizer recommendation system. Trained on Kaggle datasets using YOLOv5, deployed on Raspberry Pi for real-field use.
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">YOLOv5</span>
+        <span class="stack-tag">Raspberry Pi</span>
+        <span class="stack-tag">ONNX</span>
+        <span class="stack-tag">Google Colab</span>
+      </div>
+      <span class="project-link">View on GitHub →</span>
+    </a>
+
+    <a href="https://github.com/Urfiya-Libaibe/Smart-Queue-Management-PIR-IoT" target="_blank" class="project-card reveal">
+      <div class="project-icon">🚦</div>
+      <div class="project-tag">IoT · Firebase · Arduino</div>
+      <div class="project-name">Smart Queue System</div>
+      <div class="project-desc">
+        IoT-based real-time bank token system. Customers book tokens online, NodeMCU fetches queue data from Firebase, LCD displays live token status, PIR sensor detects presence.
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">NodeMCU</span>
+        <span class="stack-tag">Firebase</span>
+        <span class="stack-tag">PIR Sensor</span>
+        <span class="stack-tag">Arduino</span>
+        <span class="stack-tag">ThingSpeak</span>
+      </div>
+      <span class="project-link">View on GitHub →</span>
+    </a>
+
+    <a href="https://github.com/Urfiya-Libaibe/ResistAI-AMR-Prediction-App" target="_blank" class="project-card reveal">
+      <div class="project-icon">🏥</div>
+      <div class="project-tag">Healthcare AI · Hackathon · Multi-Agent</div>
+      <div class="project-name">ResistAI</div>
+      <div class="project-desc">
+        Multi-agent AI app for predicting antibiotic resistance (AMR) and recommending safer alternatives. Built at hackathon — tackles one of WHO's top global health threats.
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">Multi-Agent AI</span>
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Firebase</span>
+        <span class="stack-tag">QR Tracking</span>
+        <span class="stack-tag">Figma</span>
+      </div>
+      <span class="project-link">View on GitHub →</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Skills</div>
+  <h2 class="section-title">Tech Stack</h2>
+  <div class="skills-grid">
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">Languages</div>
+      <ul class="skill-list">
+        <li>Python</li>
+        <li>C / C++</li>
+        <li>HTML & CSS</li>
+        <li>JavaScript</li>
+      </ul>
+    </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">AI / ML</div>
+      <ul class="skill-list">
+        <li>YOLOv5</li>
+        <li>Scikit-learn</li>
+        <li>TensorFlow</li>
+        <li>Jupyter Notebook</li>
+        <li>Google Colab</li>
+      </ul>
+    </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">IoT & Hardware</div>
+      <ul class="skill-list">
+        <li>Raspberry Pi</li>
+        <li>NodeMCU ESP8266</li>
+        <li>Arduino IDE</li>
+        <li>PIR / IR Sensors</li>
+        <li>LCD Displays</li>
+      </ul>
+    </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">Tools & Cloud</div>
+      <ul class="skill-list">
+        <li>Firebase</li>
+        <li>Kaggle</li>
+        <li>Git & GitHub</li>
+        <li>Figma</li>
+        <li>ThingSpeak</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="edu">
+  <div class="section-label">Education</div>
+  <h2 class="section-title">Academic Background</h2>
+  <div class="edu-card reveal">
+    <div>
+      <div class="edu-degree">B.E. in Computer Science & Engineering</div>
+      <div class="edu-school">Vidya Vardhaka College of Engineering, Mysore</div>
+      <div class="edu-detail">VTU Affiliated · Mysuru, Karnataka, India</div>
+    </div>
+    <div class="edu-year">
+      2023 — 2027<br>
+      <span style="color: var(--accent); font-size: 0.75rem;">Currently in 2nd Year</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title" style="text-align:center;">Let's Connect</h2>
+  <div class="contact-inner reveal">
+    <p>
+      I'm open to internships, collaborations, and interesting projects. Whether you want to talk AI, IoT, or just say hello — my inbox is always open.
+    </p>
+    <div class="contact-links">
+      <a href="https://github.com/Urfiya-Libaibe" target="_blank" class="contact-btn github">
+        ⌥ GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/urfiya-libaibe-34624b333" target="_blank" class="contact-btn linkedin">
+        in LinkedIn
+      </a>
+      <a href="mailto:urfiyalibaibe410@gmail.com" class="contact-btn email">
+        @ Email Me
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed & Built by <span>Urfiya Libaibe</span></p>
+  <p>CSE '27 @ VVCE Mysore &nbsp;·&nbsp; <span>urfiyalibaibe410@gmail.com</span></p>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx - 6 + 'px';
+    cursor.style.top = my - 6 + 'px';
+  });
+
+  function animateRing() {
+    rx += (mx - rx - 18) * 0.12;
+    ry += (my - ry - 18) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'scale(2)';
+      ring.style.transform = 'scale(1.5)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'scale(1)';
+      ring.style.transform = 'scale(1)';
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
