@@ -1,2013 +1,988 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta
-    name="description"
-    content="Urfiya Libaibe — 3rd Year Computer Science Engineering student specializing in AI/ML, IoT and intelligent real-world applications."
-  >
-
-  <meta
-    name="keywords"
-    content="Urfiya Libaibe, AI ML Developer, Computer Science, Machine Learning, IoT, Python, GitHub, VVCE Mysore"
-  >
-
-  <meta name="author" content="Urfiya Libaibe">
-
-  <meta property="og:title" content="Urfiya Libaibe — AI/ML Developer">
-  <meta
-    property="og:description"
-    content="Computer Science Engineering student building AI, ML, IoT and healthcare-focused applications."
-  >
-  <meta property="og:type" content="website">
-
-  <title>Urfiya Libaibe | AI/ML Developer</title>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Syne:wght@600;700;800&display=swap"
-    rel="stylesheet"
-  >
-
-  <style>
-
-    /* =====================================================
-       ROOT
-    ===================================================== */
-
-    :root {
-      --bg: #070b10;
-      --bg-soft: #0b1118;
-      --card: #0d141c;
-      --card-hover: #111a24;
-
-      --cyan: #00d9ff;
-      --cyan-soft: rgba(0, 217, 255, 0.12);
-
-      --purple: #8b5cf6;
-      --pink: #ff477e;
-      --green: #00f5a0;
-
-      --text: #edf4f8;
-      --muted: #84909c;
-
-      --border: rgba(255,255,255,0.08);
-
-      --max-width: 1200px;
-    }
-
-
-    /* =====================================================
-       RESET
-    ===================================================== */
-
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: "DM Sans", sans-serif;
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-
-    /* =====================================================
-       BACKGROUND
-    ===================================================== */
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-
-      background-image:
-        linear-gradient(
-          rgba(0,217,255,0.025) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(0,217,255,0.025) 1px,
-          transparent 1px
-        );
-
-      background-size: 60px 60px;
-
-      pointer-events: none;
-      z-index: -2;
-    }
-
-    body::after {
-      content: "";
-
-      position: fixed;
-      width: 700px;
-      height: 700px;
-
-      top: -300px;
-      right: -250px;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(0,217,255,0.10),
-          transparent 70%
-        );
-
-      pointer-events: none;
-      z-index: -1;
-    }
-
-
-    /* =====================================================
-       NAVBAR
-    ===================================================== */
-
-    nav {
-      position: fixed;
-
-      top: 0;
-      left: 0;
-      right: 0;
-
-      z-index: 1000;
-
-      height: 72px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      padding: 0 5%;
-
-      background: rgba(7,11,16,0.78);
-
-      backdrop-filter: blur(18px);
-
-      border-bottom: 1px solid var(--border);
-    }
-
-    .logo {
-      font-family: "Space Mono", monospace;
-
-      font-size: 1rem;
-
-      font-weight: 700;
-
-      color: var(--cyan);
-
-      letter-spacing: 0.05em;
-    }
-
-    .logo span {
-      color: var(--text);
-    }
-
-    .nav-links {
-      display: flex;
-
-      align-items: center;
-
-      gap: 2rem;
-
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: "Space Mono", monospace;
-
-      font-size: 0.72rem;
-
-      color: var(--muted);
-
-      text-transform: uppercase;
-
-      letter-spacing: 0.08em;
-
-      transition: 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--cyan);
-    }
-
-    .nav-github {
-      border: 1px solid var(--border);
-
-      padding: 0.55rem 1rem;
-
-      border-radius: 5px;
-
-      color: var(--text) !important;
-    }
-
-    .nav-github:hover {
-      border-color: var(--cyan);
-      color: var(--cyan) !important;
-    }
-
-
-    /* =====================================================
-       HERO
-    ===================================================== */
-
-    .hero {
-      min-height: 100vh;
-
-      max-width: var(--max-width);
-
-      margin: auto;
-
-      padding:
-        160px 5% 100px;
-
-      display: flex;
-
-      align-items: center;
-
-      position: relative;
-    }
-
-    .hero-content {
-      max-width: 850px;
-
-      position: relative;
-
-      z-index: 2;
-    }
-
-    .status {
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 0.6rem;
-
-      padding: 0.5rem 1rem;
-
-      border: 1px solid rgba(0,217,255,0.25);
-
-      background: var(--cyan-soft);
-
-      border-radius: 30px;
-
-      font-family: "Space Mono", monospace;
-
-      font-size: 0.7rem;
-
-      color: var(--cyan);
-
-      margin-bottom: 2rem;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-
-      background: var(--green);
-
-      border-radius: 50%;
-
-      box-shadow: 0 0 12px var(--green);
-
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-
-      0%,100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-
-      50% {
-        transform: scale(0.65);
-        opacity: 0.6;
-      }
-    }
-
-    .hero h1 {
-      font-family: "Syne", sans-serif;
-
-      font-size: clamp(
-        3.5rem,
-        9vw,
-        7.5rem
-      );
-
-      line-height: 0.92;
-
-      font-weight: 800;
-
-      letter-spacing: -0.04em;
-
-      margin-bottom: 1.5rem;
-    }
-
-    .gradient-text {
-      background:
-        linear-gradient(
-          120deg,
-          var(--cyan),
-          var(--purple)
-        );
-
-      -webkit-background-clip: text;
-
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-role {
-      font-family: "Space Mono", monospace;
-
-      color: var(--muted);
-
-      font-size: 0.9rem;
-
-      margin-bottom: 1.8rem;
-    }
-
-    .hero-role span {
-      color: var(--pink);
-    }
-
-    .hero-description {
-      max-width: 650px;
-
-      font-size: 1.1rem;
-
-      color: var(--muted);
-
-      line-height: 1.9;
-
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-buttons {
-      display: flex;
-
-      gap: 1rem;
-
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 0.6rem;
-
-      padding: 0.9rem 1.5rem;
-
-      border-radius: 5px;
-
-      font-family: "Space Mono", monospace;
-
-      font-size: 0.72rem;
-
-      text-transform: uppercase;
-
-      letter-spacing: 0.05em;
-
-      transition: 0.3s ease;
-    }
-
-    .btn-primary {
-      background: var(--cyan);
-
-      color: #031016;
-
-      font-weight: 700;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-
-      box-shadow:
-        0 12px 35px
-        rgba(0,217,255,0.2);
-    }
-
-    .btn-outline {
-      border: 1px solid var(--border);
-
-      color: var(--text);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--cyan);
-
-      color: var(--cyan);
-
-      transform: translateY(-3px);
-    }
-
-    /* Decorative orb */
-
-    .hero-orb {
-      position: absolute;
-
-      width: 450px;
-      height: 450px;
-
-      right: 5%;
-      top: 50%;
-
-      transform: translateY(-50%);
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle at 35% 35%,
-          rgba(0,217,255,0.15),
-          rgba(139,92,246,0.06),
-          transparent 70%
-        );
-
-      border:
-        1px solid rgba(0,217,255,0.08);
-
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .hero-orb::before {
-      content: "AI";
-
-      position: absolute;
-
-      inset: 0;
-
-      display: grid;
-
-      place-items: center;
-
-      font-family: "Syne", sans-serif;
-
-      font-size: 8rem;
-
-      font-weight: 800;
-
-      color: rgba(255,255,255,0.035);
-    }
-
-    @keyframes float {
-
-      0%,100% {
-        transform:
-          translateY(-50%)
-          translateX(0);
-      }
-
-      50% {
-        transform:
-          translateY(calc(-50% - 20px))
-          translateX(10px);
-      }
-    }
-
-
-    /* =====================================================
-       SECTION
-    ===================================================== */
-
-    section {
-      padding: 100px 5%;
-    }
-
-    .section-container {
-      max-width: var(--max-width);
-
-      margin: auto;
-    }
-
-    .section-label {
-      font-family: "Space Mono", monospace;
-
-      color: var(--cyan);
-
-      font-size: 0.68rem;
-
-      text-transform: uppercase;
-
-      letter-spacing: 0.2em;
-
-      margin-bottom: 0.8rem;
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 0.7rem;
-    }
-
-    .section-label::before {
-      content: "";
-
-      width: 30px;
-      height: 1px;
-
-      background: var(--cyan);
-    }
-
-    .section-title {
-      font-family: "Syne", sans-serif;
-
-      font-size: clamp(
-        2rem,
-        4vw,
-        3.5rem
-      );
-
-      font-weight: 800;
-
-      letter-spacing: -0.03em;
-    }
-
-
-    /* =====================================================
-       ABOUT
-    ===================================================== */
-
-    .about {
-      background: var(--bg-soft);
-    }
-
-    .about-grid {
-      display: grid;
-
-      grid-template-columns:
-        1.2fr
-        0.8fr;
-
-      gap: 5rem;
-
-      margin-top: 3.5rem;
-    }
-
-    .about-text p {
-      color: var(--muted);
-
-      font-size: 1rem;
-
-      line-height: 1.9;
-
-      margin-bottom: 1.3rem;
-    }
-
-    .about-text strong {
-      color: var(--text);
-    }
-
-    .about-text .highlight {
-      color: var(--cyan);
-    }
-
-    .stats {
-      display: grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      gap: 1rem;
-    }
-
-    .stat {
-      padding: 1.5rem;
-
-      background: var(--card);
-
-      border: 1px solid var(--border);
-
-      border-radius: 8px;
-
-      transition: 0.3s ease;
-    }
-
-    .stat:hover {
-      border-color: var(--cyan);
-
-      transform: translateY(-4px);
-    }
-
-    .stat-number {
-      font-family: "Syne", sans-serif;
-
-      font-size: 2.2rem;
-
-      font-weight: 800;
-
-      color: var(--cyan);
-
-      margin-bottom: 0.3rem;
-    }
-
-    .stat-label {
-      color: var(--muted);
-
-      font-family: "Space Mono", monospace;
-
-      font-size: 0.65rem;
-
-      text-transform: uppercase;
-    }
-
-
-    /* =====================================================
-       PROJECTS
-    ===================================================== */
-
-    .projects {
-      background: var(--bg);
-    }
-
-    .projects-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      gap: 1.2rem;
-
-      margin-top: 3.5rem;
-    }
-
-    .project {
-      position: relative;
-
-      background: var(--card);
-
-      border: 1px solid var(--border);
-
-      border-radius: 10px;
-
-      padding: 2rem;
-
-      overflow: hidden;
-
-      transition:
-        transform 0.4s ease,
-        border-color 0.4s ease,
-        box-shadow 0.4s ease;
-    }
-
-    .project:hover {
-      transform: translateY(-8px);
-
-      border-color:
-        rgba(0,217,255,0.35);
-
-      box-shadow:
-        0 25px 70px
-        rgba(0,0,0,0.4);
-    }
-
-    .project::before {
-      content: "";
-
-      position: absolute;
-
-      top: 0;
-      left: 0;
-
-      width: 100%;
-      height: 3px;
-
-      background:
-        linear-gradient(
-          90deg,
-          var(--cyan),
-          var(--purple)
-        );
-
-      transform:
-        scaleX(0);
-
-      transform-origin: left;
-
-      transition: 0.4s ease;
-    }
-
-    .project:hover::before {
-      transform: scaleX(1);
-    }
-
-    .project-icon {
-      font-size: 2.2rem;
-
-      margin-bottom: 1.2rem;
-    }
-
-    .project-type {
-      color: var(--cyan);
-
-      font-family: "Space Mono", monospace;
-
-      font-size: 0.62rem;
-
-      text-transform: uppercase;
-
-      letter-spacing: 0.1em;
-
-      margin-bottom: 0.7rem;
-    }
-
-    .project h3 {
-      font-family: "Syne", sans-serif;
-
-      font-size: 1.35rem;
-
-      margin-bottom: 0.8rem;
-    }
-
-    .project p {
-      color: var(--muted);
-
-      font-size: 0.88rem;
-
-      line-height: 1.75;
-
-      margin-bottom: 1.4rem;
-    }
-
-    .tech-stack {
-      display: flex;
-
-      flex-wrap: wrap;
-
-      gap: 0.4rem;
-
-      margin-bottom: 1.5rem;
-    }
-
-    .tech {
-      border: 1px solid var(--border);
-
-      padding: 0.3rem 0.55rem;
-
-      border-radius: 4px;
-
-      color: var(--muted);
-
-      font-family: "Space Mono", monospace;
-
-      font-size: 0.58rem;
-    }
-
-    .project-link {
-      color: var(--cyan);
-
-      font-family: "Space Mono", monospace;
-
-      font-size: 0.68rem;
-
-      transition: 0.3s ease;
-    }
-
-    .project-link:hover {
-      letter-spacing: 0.04em;
-    }
-
-
-    /* =====================================================
-       SKILLS
-    ===================================================== */
-
-    .skills {
-      background: var(--bg-soft);
-    }
-
-    .skills-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(4,1fr);
-
-      gap: 1rem;
-
-      margin-top: 3.5rem;
-    }
-
-    .skill-card {
-      background: var(--card);
-
-      border: 1px solid var(--border);
-
-      border-radius: 8px;
-
-      padding: 1.5rem;
-
-      transition: 0.3s ease;
-    }
-
-    .skill-card:hover {
-      border-color: var(--purple);
-
-      transform: translateY(-5px);
-    }
-
-    .skill-card h3 {
-      font-family: "Space Mono", monospace;
-
-      font-size: 0.68rem;
-
-      color: var(--purple);
-
-      text-transform: uppercase;
-
-      letter-spacing: 0.1em;
-
-      margin-bottom: 1rem;
-    }
-
-    .skill-card ul {
-      list-style: none;
-    }
-
-    .skill-card li {
-      color: var(--muted);
-
-      font-size: 0.85rem;
-
-      margin-bottom: 0.65rem;
-    }
-
-    .skill-card li::before {
-      content: "▸";
-
-      color: var(--cyan);
-
-      margin-right: 0.5rem;
-    }
-
-
-    /* =====================================================
-       EDUCATION
-    ===================================================== */
-
-    .education-card {
-      margin-top: 3.5rem;
-
-      background: var(--card);
-
-      border: 1px solid var(--border);
-
-      border-radius: 10px;
-
-      padding: 2rem;
-
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: center;
-
-      gap: 2rem;
-    }
-
-    .degree {
-      font-family: "Syne", sans-serif;
-
-      font-size: 1.35rem;
-
-      font-weight: 700;
-
-      margin-bottom: 0.4rem;
-    }
-
-    .college {
-      color: var(--cyan);
-
-      margin-bottom: 0.3rem;
-    }
-
-    .education-detail {
-      color: var(--muted);
-
-      font-size: 0.85rem;
-    }
-
-    .education-year {
-      text-align: right;
-
-      font-family: "Space Mono", monospace;
-
-      color: var(--muted);
-
-      font-size: 0.75rem;
-
-      white-space: nowrap;
-    }
-
-    .current {
-      color: var(--green);
-
-      margin-top: 0.4rem;
-    }
-
-
-    /* =====================================================
-       CONTACT
-    ===================================================== */
-
-    .contact {
-      text-align: center;
-    }
-
-    .contact-content {
-      max-width: 700px;
-
-      margin:
-        3rem auto 0;
-    }
-
-    .contact-content p {
-      color: var(--muted);
-
-      font-size: 1.05rem;
-
-      line-height: 1.8;
-
-      margin-bottom: 2rem;
-    }
-
-    .contact-links {
-      display: flex;
-
-      justify-content: center;
-
-      flex-wrap: wrap;
-
-      gap: 0.8rem;
-    }
-
-    .contact-btn {
-      padding:
-        0.85rem 1.4rem;
-
-      border: 1px solid var(--border);
-
-      border-radius: 5px;
-
-      font-family: "Space Mono", monospace;
-
-      font-size: 0.7rem;
-
-      transition: 0.3s ease;
-    }
-
-    .contact-btn:hover {
-      transform: translateY(-3px);
-
-      border-color: var(--cyan);
-
-      color: var(--cyan);
-    }
-
-    .contact-btn.linkedin {
-      background: #0a66c2;
-
-      border-color: #0a66c2;
-
-      color: white;
-    }
-
-    .contact-btn.linkedin:hover {
-      color: white;
-
-      background: #0855a5;
-    }
-
-
-    /* =====================================================
-       FOOTER
-    ===================================================== */
-
-    footer {
-      border-top: 1px solid var(--border);
-
-      padding: 2rem 5%;
-
-      display: flex;
-
-      justify-content: space-between;
-
-      gap: 1rem;
-
-      color: var(--muted);
-
-      font-family: "Space Mono", monospace;
-
-      font-size: 0.65rem;
-    }
-
-    footer span {
-      color: var(--cyan);
-    }
-
-
-    /* =====================================================
-       SCROLL REVEAL
-    ===================================================== */
-
-    .reveal {
-      opacity: 0;
-
-      transform:
-        translateY(30px);
-
-      transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-
-      transform:
-        translateY(0);
-    }
-
-
-    /* =====================================================
-       MOBILE
-    ===================================================== */
-
-    @media (max-width: 900px) {
-
-      .hero-orb {
-        opacity: 0.35;
-
-        width: 320px;
-        height: 320px;
-
-        right: -100px;
-      }
-
-      .projects-grid {
-        grid-template-columns:
-          1fr 1fr;
-      }
-
-      .skills-grid {
-        grid-template-columns:
-          1fr 1fr;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-
-        gap: 3rem;
-      }
-    }
-
-
-    @media (max-width: 650px) {
-
-      nav {
-        padding: 0 1.2rem;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        padding:
-          130px 1.2rem 80px;
-      }
-
-      .hero h1 {
-        font-size: 3.6rem;
-      }
-
-      .hero-description {
-        font-size: 0.95rem;
-      }
-
-      section {
-        padding:
-          75px 1.2rem;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .stats {
-        grid-template-columns:
-          1fr 1fr;
-      }
-
-      .education-card {
-        flex-direction: column;
-
-        align-items: flex-start;
-      }
-
-      .education-year {
-        text-align: left;
-      }
-
-      footer {
-        flex-direction: column;
-
-        text-align: center;
-      }
-    }
-
-
-    /* =====================================================
-       ACCESSIBILITY
-    ===================================================== */
-
-    @media (prefers-reduced-motion: reduce) {
-
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-
-        animation-iteration-count: 1 !important;
-
-        scroll-behavior: auto !important;
-
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urfiya Libaibe — AI & ML Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080C10;
+    --bg2: #0D1117;
+    --bg3: #161B22;
+    --accent: #00D4FF;
+    --accent2: #FF3B6B;
+    --accent3: #7C3AED;
+    --green: #00FF87;
+    --text: #E6EDF3;
+    --muted: #7D8590;
+    --border: #21262D;
+    --card: #0D1117;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.15s ease;
+    opacity: 0.5;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8,12,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+  }
+
+  @keyframes gridMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(60px); }
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+    top: 50%; left: 60%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-glow2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(255,59,107,0.06) 0%, transparent 70%);
+    top: 30%; left: 20%;
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    border: 1px solid rgba(0,212,255,0.3);
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.8s 0.1s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-name .highlight {
+    background: linear-gradient(135deg, var(--accent), var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s 0.2s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-title span { color: var(--accent2); }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    animation: fadeUp 0.8s 0.3s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.4s ease forwards;
+    opacity: 0;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+  }
+
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent), 0 0 30px rgba(0,212,255,0.2);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Scrolling ticker */
+  .ticker {
+    background: var(--bg3);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-inner {
+    display: inline-flex;
+    animation: ticker 25s linear infinite;
+    gap: 4rem;
+  }
+
+  .ticker-item {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .ticker-item::before {
+    content: '★';
+    color: var(--accent);
+    font-size: 0.6rem;
+  }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Sections */
+  section {
+    padding: 6rem 4rem;
+    position: relative;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 1.2rem;
+    font-size: 1.05rem;
+  }
+
+  .about-text p span { color: var(--accent); font-weight: 500; }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+  }
+
+  .stat-card:hover { border-color: var(--accent); }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* Projects */
+  .projects { background: var(--bg2); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .project-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .project-card:hover {
+    border-color: rgba(0,212,255,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  .project-card:hover::before { transform: scaleX(1); }
+
+  .project-icon {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .project-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stack-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .project-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+  }
+
+  .project-link:hover { gap: 0.8rem; }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .skill-category {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.3s;
+  }
+
+  .skill-category:hover { border-color: var(--accent3); }
+
+  .skill-cat-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .skill-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .skill-list li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .skill-list li::before {
+    content: '▸';
+    color: var(--accent);
+    font-size: 0.7rem;
+  }
+
+  /* Education */
+  .edu { background: var(--bg2); }
+
+  .edu-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem 2.5rem;
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.3s;
+  }
+
+  .edu-card:hover { border-color: var(--accent); }
+
+  .edu-degree {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .edu-school {
+    color: var(--accent);
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .edu-detail { color: var(--muted); font-size: 0.85rem; }
+
+  .edu-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: right;
+  }
+
+  /* Contact */
+  .contact-inner {
+    max-width: 700px;
+    margin: 3rem auto 0;
+    text-align: center;
+  }
+
+  .contact-inner p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.8rem;
+    border-radius: 4px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+  }
+
+  .contact-btn.github {
+    background: var(--bg3);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .contact-btn.github:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .contact-btn.linkedin {
+    background: #0A66C2;
+    color: white;
+  }
+
+  .contact-btn.linkedin:hover { background: #0855a5; }
+
+  .contact-btn.email {
+    background: var(--accent2);
+    color: white;
+  }
+
+  .contact-btn.email:hover { background: #e02255; }
+
+  /* Footer */
+  footer {
+    background: var(--bg3);
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  footer span { color: var(--accent); }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .hero-name { font-size: 3rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .edu-card { flex-direction: column; gap: 1rem; text-align: center; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
 </head>
-
-
 <body>
 
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- ===================================================
-       NAVIGATION
-  =================================================== -->
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">UL.dev</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <nav>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Available for Internships 2025–26</div>
+    <h1 class="hero-name">
+      Urfiya<br><span class="highlight">Libaibe</span>
+    </h1>
+    <p class="hero-title">
+      AI/ML Developer &nbsp;/&nbsp; IoT Builder &nbsp;/&nbsp; <span>CSE '27 @ VVCE Mysore</span>
+    </p>
+    <p class="hero-desc">
+      Building intelligent real-world systems at the intersection of Machine Learning, IoT, and Healthcare AI. From soil sensors on Raspberry Pi to multi-agent antibiotic resistance prediction.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View Projects →</a>
+      <a href="https://github.com/Urfiya-Libaibe" target="_blank" class="btn-secondary">GitHub ↗</a>
+    </div>
+  </div>
+</section>
 
-    <a href="#home" class="logo">
-      UL<span>.dev</span>
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Machine Learning</span>
+    <span class="ticker-item">Raspberry Pi</span>
+    <span class="ticker-item">YOLOv5</span>
+    <span class="ticker-item">Firebase</span>
+    <span class="ticker-item">Healthcare AI</span>
+    <span class="ticker-item">IoT Systems</span>
+    <span class="ticker-item">Python</span>
+    <span class="ticker-item">Multi-Agent AI</span>
+    <span class="ticker-item">Computer Vision</span>
+    <span class="ticker-item">NodeMCU</span>
+    <span class="ticker-item">Google Colab</span>
+    <span class="ticker-item">Kaggle</span>
+    <span class="ticker-item">Machine Learning</span>
+    <span class="ticker-item">Raspberry Pi</span>
+    <span class="ticker-item">YOLOv5</span>
+    <span class="ticker-item">Firebase</span>
+    <span class="ticker-item">Healthcare AI</span>
+    <span class="ticker-item">IoT Systems</span>
+    <span class="ticker-item">Python</span>
+    <span class="ticker-item">Multi-Agent AI</span>
+    <span class="ticker-item">Computer Vision</span>
+    <span class="ticker-item">NodeMCU</span>
+    <span class="ticker-item">Google Colab</span>
+    <span class="ticker-item">Kaggle</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <h2 class="section-title">Who I Am</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        I'm <span>Urfiya Libaibe</span>, a 2nd year Computer Science student at <span>Vidya Vardhaka College of Engineering, Mysore</span> — passionate about building AI systems that solve real problems.
+      </p>
+      <p>
+        My journey started with a Raspberry Pi, soil images, and a Kaggle dataset — and grew into building a <span>multi-agent Healthcare AI app</span> at a hackathon. I don't just study AI, I build with it.
+      </p>
+      <p>
+        I'm currently learning <span>Deep Learning & Computer Vision</span>, and working on making my projects production-ready with full frontend and backend integration.
+      </p>
+    </div>
+    <div class="about-stats reveal">
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Real-World Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2nd</div>
+        <div class="stat-label">Year CSE Student</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Hackathon Built</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Problems to Solve</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="projects">
+  <div class="section-label">Projects</div>
+  <h2 class="section-title">What I've Built</h2>
+  <div class="projects-grid">
+
+    <a href="https://github.com/Urfiya-Libaibe/Smart-AgriAI-Soil-Fertilizer-Predictor" target="_blank" class="project-card reveal">
+      <div class="project-icon">🌱</div>
+      <div class="project-tag">Machine Learning · IoT · Internship</div>
+      <div class="project-name">Smart AgriAI</div>
+      <div class="project-desc">
+        AI-powered soil type classification and fertilizer recommendation system. Trained on Kaggle datasets using YOLOv5, deployed on Raspberry Pi for real-field use.
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">YOLOv5</span>
+        <span class="stack-tag">Raspberry Pi</span>
+        <span class="stack-tag">ONNX</span>
+        <span class="stack-tag">Google Colab</span>
+      </div>
+      <span class="project-link">View on GitHub →</span>
     </a>
 
-    <ul class="nav-links">
-
-      <li>
-        <a href="#about">About</a>
-      </li>
-
-      <li>
-        <a href="#projects">Projects</a>
-      </li>
-
-      <li>
-        <a href="#skills">Skills</a>
-      </li>
-
-      <li>
-        <a href="#education">Education</a>
-      </li>
-
-      <li>
-        <a href="#contact">Contact</a>
-      </li>
-
-      <li>
-        <a
-          href="https://github.com/Urfiya-Libaibe"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="nav-github"
-        >
-          GitHub ↗
-        </a>
-      </li>
-
-    </ul>
-
-  </nav>
-
-
-  <!-- ===================================================
-       HERO
-  =================================================== -->
-
-  <main>
-
-    <section class="hero" id="home">
-
-      <div class="hero-content">
-
-        <div class="status">
-          <span class="status-dot"></span>
-          Open to Internships · 2026–27
-        </div>
-
-        <h1>
-          Urfiya<br>
-          <span class="gradient-text">
-            Libaibe
-          </span>
-        </h1>
-
-        <div class="hero-role">
-          AI/ML Developer
-          &nbsp;/&nbsp;
-          IoT Builder
-          &nbsp;/&nbsp;
-          <span>CSE '27 @ VVCE Mysore</span>
-        </div>
-
-        <p class="hero-description">
-          I build intelligent, real-world applications at the
-          intersection of Artificial Intelligence, Machine Learning,
-          IoT, and Healthcare Technology.
-        </p>
-
-        <div class="hero-buttons">
-
-          <a
-            href="#projects"
-            class="btn btn-primary"
-          >
-            Explore My Work →
-          </a>
-
-          <a
-            href="resume.pdf"
-            target="_blank"
-            class="btn btn-outline"
-          >
-            View Resume ↗
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/urfiya-libaibe-903521330/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-outline"
-          >
-            LinkedIn ↗
-          </a>
-
-        </div>
-
+    <a href="https://github.com/Urfiya-Libaibe/Smart-Queue-Management-PIR-IoT" target="_blank" class="project-card reveal">
+      <div class="project-icon">🚦</div>
+      <div class="project-tag">IoT · Firebase · Arduino</div>
+      <div class="project-name">Smart Queue System</div>
+      <div class="project-desc">
+        IoT-based real-time bank token system. Customers book tokens online, NodeMCU fetches queue data from Firebase, LCD displays live token status, PIR sensor detects presence.
       </div>
-
-      <div
-        class="hero-orb"
-        aria-hidden="true"
-      ></div>
-
-    </section>
-
-
-    <!-- =================================================
-         ABOUT
-    ================================================= -->
-
-    <section class="about" id="about">
-
-      <div class="section-container">
-
-        <div class="section-label">
-          About Me
-        </div>
-
-        <h2 class="section-title">
-          Building with purpose.
-        </h2>
-
-        <div class="about-grid">
-
-          <div class="about-text reveal">
-
-            <p>
-              I'm <strong>Urfiya Libaibe</strong>, a
-              <span class="highlight">
-                3rd Year Computer Science & Engineering student
-              </span>
-              at Vidya Vardhaka College of Engineering,
-              Mysuru.
-            </p>
-
-            <p>
-              My interests lie in
-              <strong>Artificial Intelligence, Machine Learning,
-              Computer Vision, IoT, and Healthcare Technology.</strong>
-              I enjoy turning ideas into practical systems rather
-              than keeping them only on paper.
-            </p>
-
-            <p>
-              From building an
-              <span class="highlight">
-                AI-powered agriculture system
-              </span>
-              using Raspberry Pi to developing
-              <span class="highlight">
-                ResistAI
-              </span>
-              for antibiotic-resistance awareness,
-              my goal is simple:
-              <strong>use technology to solve meaningful problems.</strong>
-            </p>
-
-          </div>
-
-
-          <div class="stats reveal">
-
-            <div class="stat">
-
-              <div class="stat-number">
-                3+
-              </div>
-
-              <div class="stat-label">
-                Projects
-              </div>
-
-            </div>
-
-
-            <div class="stat">
-
-              <div class="stat-number">
-                3rd
-              </div>
-
-              <div class="stat-label">
-                Year CSE
-              </div>
-
-            </div>
-
-
-            <div class="stat">
-
-              <div class="stat-number">
-                AI
-              </div>
-
-              <div class="stat-label">
-                Focus Area
-              </div>
-
-            </div>
-
-
-            <div class="stat">
-
-              <div class="stat-number">
-                ∞
-              </div>
-
-              <div class="stat-label">
-                Things to Build
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
+      <div class="project-stack">
+        <span class="stack-tag">NodeMCU</span>
+        <span class="stack-tag">Firebase</span>
+        <span class="stack-tag">PIR Sensor</span>
+        <span class="stack-tag">Arduino</span>
+        <span class="stack-tag">ThingSpeak</span>
       </div>
+      <span class="project-link">View on GitHub →</span>
+    </a>
 
-    </section>
-
-
-    <!-- =================================================
-         PROJECTS
-    ================================================= -->
-
-    <section class="projects" id="projects">
-
-      <div class="section-container">
-
-        <div class="section-label">
-          Selected Work
-        </div>
-
-        <h2 class="section-title">
-          Things I've Built.
-        </h2>
-
-
-        <div class="projects-grid">
-
-
-          <!-- PROJECT 1 -->
-
-          <article class="project reveal">
-
-            <div class="project-icon">
-              🌱
-            </div>
-
-            <div class="project-type">
-              AI · ML · IoT
-            </div>
-
-            <h3>
-              Smart AgriAI
-            </h3>
-
-            <p>
-              AI-powered soil classification and fertilizer
-              recommendation system designed to connect
-              machine learning with real-world agricultural
-              applications.
-            </p>
-
-            <div class="tech-stack">
-
-              <span class="tech">
-                Python
-              </span>
-
-              <span class="tech">
-                YOLOv5
-              </span>
-
-              <span class="tech">
-                Raspberry Pi
-              </span>
-
-              <span class="tech">
-                ONNX
-              </span>
-
-              <span class="tech">
-                Google Colab
-              </span>
-
-            </div>
-
-            <a
-              href="https://github.com/Urfiya-Libaibe/Smart-AgriAI-Soil-Fertilizer-Predictor"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="project-link"
-            >
-              View Project →
-            </a>
-
-          </article>
-
-
-          <!-- PROJECT 2 -->
-
-          <article class="project reveal">
-
-            <div class="project-icon">
-              🚦
-            </div>
-
-            <div class="project-type">
-              IoT · Firebase
-            </div>
-
-            <h3>
-              Smart Queue Management
-            </h3>
-
-            <p>
-              Real-time IoT-based bank token management system
-              combining online token booking, Firebase,
-              NodeMCU, LCD displays and sensor-based presence
-              detection.
-            </p>
-
-            <div class="tech-stack">
-
-              <span class="tech">
-                NodeMCU
-              </span>
-
-              <span class="tech">
-                Firebase
-              </span>
-
-              <span class="tech">
-                PIR
-              </span>
-
-              <span class="tech">
-                Arduino
-              </span>
-
-              <span class="tech">
-                ThingSpeak
-              </span>
-
-            </div>
-
-            <a
-              href="https://github.com/Urfiya-Libaibe/Smart-Queue-Management-PIR-IoT"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="project-link"
-            >
-              View Project →
-            </a>
-
-          </article>
-
-
-          <!-- PROJECT 3 -->
-
-          <article class="project reveal">
-
-            <div class="project-icon">
-              🏥
-            </div>
-
-            <div class="project-type">
-              Healthcare AI · Hackathon
-            </div>
-
-            <h3>
-              ResistAI
-            </h3>
-
-            <p>
-              Healthcare-focused AI application exploring
-              antibiotic resistance and evidence-aware
-              decision support, developed as a real-world
-              problem-solving project.
-            </p>
-
-            <div class="tech-stack">
-
-              <span class="tech">
-                Python
-              </span>
-
-              <span class="tech">
-                AI
-              </span>
-
-              <span class="tech">
-                Flask
-              </span>
-
-              <span class="tech">
-                Firebase
-              </span>
-
-              <span class="tech">
-                Figma
-              </span>
-
-            </div>
-
-            <a
-              href="https://github.com/Urfiya-Libaibe/ResistAI-AMR-Prediction-App"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="project-link"
-            >
-              View Project →
-            </a>
-
-          </article>
-
-        </div>
-
+    <a href="https://github.com/Urfiya-Libaibe/ResistAI-AMR-Prediction-App" target="_blank" class="project-card reveal">
+      <div class="project-icon">🏥</div>
+      <div class="project-tag">Healthcare AI · Hackathon · Multi-Agent</div>
+      <div class="project-name">ResistAI</div>
+      <div class="project-desc">
+        Multi-agent AI app for predicting antibiotic resistance (AMR) and recommending safer alternatives. Built at hackathon — tackles one of WHO's top global health threats.
       </div>
-
-    </section>
-
-
-    <!-- =================================================
-         SKILLS
-    ================================================= -->
-
-    <section class="skills" id="skills">
-
-      <div class="section-container">
-
-        <div class="section-label">
-          Technical Skills
-        </div>
-
-        <h2 class="section-title">
-          My Toolkit.
-        </h2>
-
-
-        <div class="skills-grid">
-
-
-          <div class="skill-card reveal">
-
-            <h3>
-              Languages
-            </h3>
-
-            <ul>
-
-              <li>Python</li>
-
-              <li>C / C++</li>
-
-              <li>Java</li>
-
-              <li>JavaScript</li>
-
-              <li>HTML / CSS</li>
-
-            </ul>
-
-          </div>
-
-
-          <div class="skill-card reveal">
-
-            <h3>
-              AI / ML
-            </h3>
-
-            <ul>
-
-              <li>Machine Learning</li>
-
-              <li>Computer Vision</li>
-
-              <li>YOLOv5</li>
-
-              <li>Scikit-learn</li>
-
-              <li>TensorFlow</li>
-
-              <li>Jupyter / Colab</li>
-
-            </ul>
-
-          </div>
-
-
-          <div class="skill-card reveal">
-
-            <h3>
-              IoT / Hardware
-            </h3>
-
-            <ul>
-
-              <li>Raspberry Pi</li>
-
-              <li>NodeMCU ESP8266</li>
-
-              <li>Arduino</li>
-
-              <li>PIR / IR Sensors</li>
-
-              <li>LCD Displays</li>
-
-            </ul>
-
-          </div>
-
-
-          <div class="skill-card reveal">
-
-            <h3>
-              Development
-            </h3>
-
-            <ul>
-
-              <li>Git & GitHub</li>
-
-              <li>Flask</li>
-
-              <li>Firebase</li>
-
-              <li>SQL</li>
-
-              <li>Figma</li>
-
-              <li>ThingSpeak</li>
-
-            </ul>
-
-          </div>
-
-        </div>
-
+      <div class="project-stack">
+        <span class="stack-tag">Multi-Agent AI</span>
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Firebase</span>
+        <span class="stack-tag">QR Tracking</span>
+        <span class="stack-tag">Figma</span>
       </div>
+      <span class="project-link">View on GitHub →</span>
+    </a>
 
-    </section>
+  </div>
+</section>
 
-
-    <!-- =================================================
-         EDUCATION
-    ================================================= -->
-
-    <section id="education">
-
-      <div class="section-container">
-
-        <div class="section-label">
-          Education
-        </div>
-
-        <h2 class="section-title">
-          Academic Journey.
-        </h2>
-
-
-        <div class="education-card reveal">
-
-          <div>
-
-            <div class="degree">
-              B.E. — Computer Science & Engineering
-            </div>
-
-            <div class="college">
-              Vidya Vardhaka College of Engineering
-            </div>
-
-            <div class="education-detail">
-              Mysuru, Karnataka · VTU Affiliated
-            </div>
-
-          </div>
-
-
-          <div class="education-year">
-
-            2025 — 2027
-
-            <div class="current">
-              ● Currently in 3rd Year
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =================================================
-         CONTACT
-    ================================================= -->
-
-    <section class="contact" id="contact">
-
-      <div class="section-container">
-
-        <div class="section-label">
-          Contact
-        </div>
-
-        <h2 class="section-title">
-          Let's build something.
-        </h2>
-
-
-        <div class="contact-content reveal">
-
-          <p>
-            Interested in AI, IoT, healthcare technology,
-            or building something useful from scratch?
-            I'm always open to learning, collaborating,
-            and exploring interesting ideas.
-          </p>
-
-
-          <div class="contact-links">
-
-            <a
-              href="https://github.com/Urfiya-Libaibe"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="contact-btn"
-            >
-              GitHub ↗
-            </a>
-
-
-            <a
-              href="https://www.linkedin.com/in/urfiya-libaibe-903521330/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="contact-btn linkedin"
-            >
-              LinkedIn ↗
-            </a>
-
-
-            <a
-              href="mailto:urfiyalibaibe410@gmail.com"
-              class="contact-btn"
-            >
-              Email ✉
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- ===================================================
-       FOOTER
-  =================================================== -->
-
-  <footer>
-
-    <div>
-      Designed & Built by
-      <span>
-        Urfiya Libaibe
-      </span>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Skills</div>
+  <h2 class="section-title">Tech Stack</h2>
+  <div class="skills-grid">
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">Languages</div>
+      <ul class="skill-list">
+        <li>Python</li>
+        <li>C / C++</li>
+        <li>HTML & CSS</li>
+        <li>JavaScript</li>
+      </ul>
     </div>
-
-    <div>
-      CSE '27 · VVCE Mysuru
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">AI / ML</div>
+      <ul class="skill-list">
+        <li>YOLOv5</li>
+        <li>Scikit-learn</li>
+        <li>TensorFlow</li>
+        <li>Jupyter Notebook</li>
+        <li>Google Colab</li>
+      </ul>
     </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">IoT & Hardware</div>
+      <ul class="skill-list">
+        <li>Raspberry Pi</li>
+        <li>NodeMCU ESP8266</li>
+        <li>Arduino IDE</li>
+        <li>PIR / IR Sensors</li>
+        <li>LCD Displays</li>
+      </ul>
+    </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">Tools & Cloud</div>
+      <ul class="skill-list">
+        <li>Firebase</li>
+        <li>Kaggle</li>
+        <li>Git & GitHub</li>
+        <li>Figma</li>
+        <li>ThingSpeak</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-  </footer>
+<!-- EDUCATION -->
+<section id="education" class="edu">
+  <div class="section-label">Education</div>
+  <h2 class="section-title">Academic Background</h2>
+  <div class="edu-card reveal">
+    <div>
+      <div class="edu-degree">B.E. in Computer Science & Engineering</div>
+      <div class="edu-school">Vidya Vardhaka College of Engineering, Mysore</div>
+      <div class="edu-detail">VTU Affiliated · Mysuru, Karnataka, India</div>
+    </div>
+    <div class="edu-year">
+      2023 — 2027<br>
+      <span style="color: var(--accent); font-size: 0.75rem;">Currently in 2nd Year</span>
+    </div>
+  </div>
+</section>
 
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title" style="text-align:center;">Let's Connect</h2>
+  <div class="contact-inner reveal">
+    <p>
+      I'm open to internships, collaborations, and interesting projects. Whether you want to talk AI, IoT, or just say hello — my inbox is always open.
+    </p>
+    <div class="contact-links">
+      <a href="https://github.com/Urfiya-Libaibe" target="_blank" class="contact-btn github">
+        ⌥ GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/urfiya-libaibe-34624b333" target="_blank" class="contact-btn linkedin">
+        in LinkedIn
+      </a>
+      <a href="mailto:urfiyalibaibe410@gmail.com" class="contact-btn email">
+        @ Email Me
+      </a>
+    </div>
+  </div>
+</section>
 
-  <!-- ===================================================
-       JAVASCRIPT
-  =================================================== -->
+<!-- FOOTER -->
+<footer>
+  <p>Designed & Built by <span>Urfiya Libaibe</span></p>
+  <p>CSE '27 @ VVCE Mysore &nbsp;·&nbsp; <span>urfiyalibaibe410@gmail.com</span></p>
+</footer>
 
-  <script>
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
 
-    /*
-      Scroll Reveal Animation
-    */
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx - 6 + 'px';
+    cursor.style.top = my - 6 + 'px';
+  });
 
-    const revealElements =
-      document.querySelectorAll(".reveal");
+  function animateRing() {
+    rx += (mx - rx - 18) * 0.12;
+    ry += (my - ry - 18) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
 
-    const observer =
-      new IntersectionObserver(
-        (entries) => {
-
-          entries.forEach((entry) => {
-
-            if (entry.isIntersecting) {
-
-              entry.target.classList.add(
-                "visible"
-              );
-
-              observer.unobserve(
-                entry.target
-              );
-
-            }
-
-          });
-
-        },
-        {
-          threshold: 0.12
-        }
-      );
-
-
-    revealElements.forEach((element) => {
-
-      observer.observe(element);
-
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'scale(2)';
+      ring.style.transform = 'scale(1.5)';
     });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'scale(1)';
+      ring.style.transform = 'scale(1)';
+    });
+  });
 
-
-    /*
-      Active Navigation Highlight
-    */
-
-    const sections =
-      document.querySelectorAll(
-        "section[id]"
-      );
-
-    const navLinks =
-      document.querySelectorAll(
-        ".nav-links a"
-      );
-
-    window.addEventListener(
-      "scroll",
-      () => {
-
-        let current = "";
-
-        sections.forEach((section) => {
-
-          const sectionTop =
-            section.offsetTop - 120;
-
-          if (
-            window.scrollY >= sectionTop
-          ) {
-
-            current =
-              section.getAttribute("id");
-
-          }
-
-        });
-
-
-        navLinks.forEach((link) => {
-
-          link.style.color = "";
-
-          if (
-            link.getAttribute("href") ===
-            `#${current}`
-          ) {
-
-            link.style.color =
-              "var(--cyan)";
-
-          }
-
-        });
-
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
       }
-    );
+    });
+  }, { threshold: 0.1 });
 
-
-    /*
-      Prevent broken resume link
-      from opening if resume is not
-      added yet.
-    */
-
-    const resume =
-      document.querySelector(
-        'a[href="resume.pdf"]'
-      );
-
-    if (resume) {
-
-      resume.addEventListener(
-        "click",
-        (event) => {
-
-          /*
-            Remove this warning once
-            resume.pdf is added to GitHub.
-          */
-
-        }
-      );
-
-    }
-
-  </script>
-
+  reveals.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
